@@ -1,0 +1,15 @@
+{
+  "shared": {
+    "name": "genesis-minds",
+    "metadata": {
+      "description": "Genesis-created mind template marketplace",
+      "version": "0.1.0"
+    },
+    "owner": {
+      "name": "Ian Philpot",
+      "email": "ianphil@users.noreply.github.com"
+    }
+  },
+  "copilot": {},
+  "extPluginSources": {}
+}

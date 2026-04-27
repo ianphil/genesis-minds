@@ -1,0 +1,16 @@
+{
+  "name": "genesis-minds",
+  "description": "Prebuilt Genesis mind templates for Chamber onboarding.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Ian Philpot",
+    "email": "ianphil@users.noreply.github.com"
+  },
+  "keywords": ["genesis", "minds", "chamber", "templates"],
+  "minds": [
+    {
+      "id": "lucy",
+      "manifest": "minds/lucy/mind.json"
+    }
+  ]
+}

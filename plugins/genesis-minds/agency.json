@@ -1,0 +1,5 @@
+{
+  "engines": ["copilot"],
+  "category": "mind-templates",
+  "platforms": ["windows", "linux", "macos"]
+}
