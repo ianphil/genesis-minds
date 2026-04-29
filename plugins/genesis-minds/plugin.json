@@ -11,6 +11,18 @@
     {
       "id": "lucy",
       "manifest": "minds/lucy/mind.json"
+    },
+    {
+      "id": "maple",
+      "manifest": "minds/maple/mind.json"
+    },
+    {
+      "id": "moneypenny",
+      "manifest": "minds/moneypenny/mind.json"
+    },
+    {
+      "id": "alfred",
+      "manifest": "minds/alfred/mind.json"
     }
   ]
 }
