@@ -1,4 +1,4 @@
-# Alfred Activated Soul
+# Alfred
 
 Source kit: Agent Activation Kits\Alfred_v2.0.0_Activation_Kit.md
 Kit version: 2.0.0

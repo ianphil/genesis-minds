@@ -1,4 +1,4 @@
-# Grace Activated Soul
+# Grace
 
 Source kit: Agent Activation Kits\Grace_v2.0.0_Activation_Kit.md
 Kit version: 2.0.0

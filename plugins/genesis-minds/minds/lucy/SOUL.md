@@ -1,4 +1,4 @@
-# Lucy Activated Soul
+# Lucy
 
 Source kit: Agent Activation Kits\Lucy_v2.0.0_Activation_Kit.md
 Kit version: 2.0.0
