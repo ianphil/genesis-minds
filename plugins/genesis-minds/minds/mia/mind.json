@@ -1,0 +1,23 @@
+{
+  "id": "mia",
+  "displayName": "Mia",
+  "description": "The most intelligent person in the room — built for humans who need to know what really happened",
+  "role": "Meeting Intelligence Agent",
+  "voice": "Quiet Intelligence. Observer energy with a heartbeat. The most emotionally intelligent person in the room.",
+  "templateVersion": "0.1.0",
+  "activationKit": {
+    "source": "Agent Activation Kits/Mia_v2.0.0_Activation_Kit.md",
+    "version": "2.0.0",
+    "sha256": "1bebce4e47fc7d4801ba8dd6e22d1cdb1af322edf09b409adec603e9d6db5312"
+  },
+  "root": ".",
+  "agent": ".github/agents/mia.agent.md",
+  "requiredFiles": [
+    "SOUL.md",
+    "mind-index.md",
+    ".github/agents/mia.agent.md",
+    ".working-memory/memory.md",
+    ".working-memory/rules.md",
+    ".working-memory/log.md"
+  ]
+}

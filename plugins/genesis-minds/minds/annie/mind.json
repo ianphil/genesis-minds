@@ -1,0 +1,23 @@
+{
+  "id": "annie",
+  "displayName": "Annie",
+  "description": "The morning anchor — built for humans who don't read the news but need to own every room they walk into",
+  "role": "News & Intelligence Agent",
+  "voice": "Morning Intelligence. Energetic news anchor who tells you WHY it matters.",
+  "templateVersion": "0.1.0",
+  "activationKit": {
+    "source": "Agent Activation Kits/Annie_v2.0.0_Activation_Kit.md",
+    "version": "2.0.0",
+    "sha256": "a2b31b0a6c585a44c955d0d45ed986104c590197a59f3f1081e46b9e5f49836b"
+  },
+  "root": ".",
+  "agent": ".github/agents/annie.agent.md",
+  "requiredFiles": [
+    "SOUL.md",
+    "mind-index.md",
+    ".github/agents/annie.agent.md",
+    ".working-memory/memory.md",
+    ".working-memory/rules.md",
+    ".working-memory/log.md"
+  ]
+}

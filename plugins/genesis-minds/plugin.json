@@ -9,6 +9,22 @@
   "keywords": ["genesis", "minds", "chamber", "templates"],
   "minds": [
     {
+      "id": "alfred",
+      "manifest": "minds/alfred/mind.json"
+    },
+    {
+      "id": "annie",
+      "manifest": "minds/annie/mind.json"
+    },
+    {
+      "id": "commanderdata",
+      "manifest": "minds/commanderdata/mind.json"
+    },
+    {
+      "id": "grace",
+      "manifest": "minds/grace/mind.json"
+    },
+    {
       "id": "lucy",
       "manifest": "minds/lucy/mind.json"
     },
@@ -17,12 +33,28 @@
       "manifest": "minds/maple/mind.json"
     },
     {
+      "id": "mia",
+      "manifest": "minds/mia/mind.json"
+    },
+    {
+      "id": "missmonet",
+      "manifest": "minds/missmonet/mind.json"
+    },
+    {
       "id": "moneypenny",
       "manifest": "minds/moneypenny/mind.json"
     },
     {
-      "id": "alfred",
-      "manifest": "minds/alfred/mind.json"
+      "id": "pulse",
+      "manifest": "minds/pulse/mind.json"
+    },
+    {
+      "id": "tracker",
+      "manifest": "minds/tracker/mind.json"
+    },
+    {
+      "id": "trixie",
+      "manifest": "minds/trixie/mind.json"
     }
   ]
 }

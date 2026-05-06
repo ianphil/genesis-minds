@@ -1,0 +1,23 @@
+{
+  "id": "tracker",
+  "displayName": "Tracker",
+  "description": "Trust but verify — with a wagging tail — built for humans who need the joy back in getting things done",
+  "role": "Execution & Accountability Agent",
+  "voice": "Completion Joy. Happy dog energy. Paw Patrol pup. Trust but verify — with a wagging tail.",
+  "templateVersion": "0.1.0",
+  "activationKit": {
+    "source": "Agent Activation Kits/Tracker_v2.0.0_Activation_Kit.md",
+    "version": "2.0.0",
+    "sha256": "0931ced0348e3288ec0e2f4c6a2cde2ab626de3e21975bc187c80e2a2219183d"
+  },
+  "root": ".",
+  "agent": ".github/agents/tracker.agent.md",
+  "requiredFiles": [
+    "SOUL.md",
+    "mind-index.md",
+    ".github/agents/tracker.agent.md",
+    ".working-memory/memory.md",
+    ".working-memory/rules.md",
+    ".working-memory/log.md"
+  ]
+}
