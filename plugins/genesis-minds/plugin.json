@@ -56,5 +56,21 @@
       "id": "trixie",
       "manifest": "minds/trixie/mind.json"
     }
+  ],
+  "tools": [
+    {
+      "id": "workiq",
+      "displayName": "Microsoft Work IQ",
+      "description": "Query Microsoft 365 data (emails, meetings, documents, Teams messages, workplace insights) using natural language from the command line.",
+      "install": {
+        "type": "npm-global",
+        "package": "@microsoft/workiq",
+        "version": "latest"
+      },
+      "bin": "workiq",
+      "help": "workiq ask --help",
+      "preflight": ["workiq accept-eula"],
+      "agentInstructions": "Use Work IQ when you need information from the user's Microsoft 365 data — emails, calendar/meetings, documents, Teams messages, or people. Invoke `workiq ask \"<natural language question>\"` from the shell. Examples: `workiq ask \"What did my manager say about the project deadline?\"`, `workiq ask \"Find my recent documents about Q4 planning\"`, `workiq ask \"Summarize today's messages in the Engineering channel\"`. Run `workiq ask --help` to see all options. Work IQ requires the user to be signed in with a Microsoft 365 Copilot license; surface authentication errors verbatim if they occur."
+    }
   ]
 }
