@@ -72,5 +72,39 @@
       "preflight": ["workiq accept-eula"],
       "agentInstructions": "Use Work IQ when you need information from the user's Microsoft 365 data — emails, calendar/meetings, documents, Teams messages, or people. Invoke `workiq ask \"<natural language question>\"` from the shell. Examples: `workiq ask \"What did my manager say about the project deadline?\"`, `workiq ask \"Find my recent documents about Q4 planning\"`, `workiq ask \"Summarize today's messages in the Engineering channel\"`. Run `workiq ask --help` to see all options. Work IQ requires the user to be signed in with a Microsoft 365 Copilot license; surface authentication errors verbatim if they occur."
     }
+  ],
+  "skills": [
+    {
+      "id": "lens",
+      "displayName": "Lens",
+      "description": "Create, inspect, fix, and manage Chamber Lens views.",
+      "root": "skills/lens",
+      "requiredFiles": ["SKILL.md"],
+      "capabilities": ["lens-json", "canvas-lens", "chamber-theme-v1"]
+    },
+    {
+      "id": "automation",
+      "displayName": "Chamber Automation",
+      "description": "Create, validate, run, inspect, and schedule Chamber automation scripts.",
+      "root": "skills/automation",
+      "requiredFiles": ["SKILL.md", "examples/briefing-with-canvas.ts"],
+      "capabilities": ["chamber-automation", "cron-scripts", "ttasks-runtime"]
+    },
+    {
+      "id": "ttasks",
+      "displayName": "ttasks",
+      "description": "TypeScript task runner and workflow engine using @ianphil/ttasks-ts.",
+      "root": "skills/ttasks",
+      "requiredFiles": [
+        "SKILL.md",
+        "SOURCE.json",
+        "patterns/agent-tasks.md",
+        "patterns/custom-types.md",
+        "patterns/workflow-shapes.md",
+        "reference/api.md",
+        "reference/state-machine.md"
+      ],
+      "capabilities": ["ttasks-ts", "task-graphs", "workflow-orchestration"]
+    }
   ]
 }
