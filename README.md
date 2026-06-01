@@ -1,13 +1,37 @@
 # Genesis Minds
 
-Public marketplace repository for Genesis-created Chamber mind templates and CLI tools.
+Public marketplace repository for Genesis-created Chamber mind templates, CLI tools, and managed skills.
 
 ## What's in this marketplace
 
-The `plugins/genesis-minds/plugin.json` manifest declares two arrays:
+The `plugins/genesis-minds/plugin.json` manifest declares three arrays:
 
 - **`minds[]`** — Pre-built Genesis mind templates that Chamber can install into the user's mind directory.
 - **`tools[]`** — Globally-installable CLI tools that Chamber will install via `npm install -g` and advertise to every mind in the session system message.
+- **`skills[]`** — Managed Copilot skills that Chamber materializes into each mind's `.github/skills/<id>/` directory.
+
+## Skills
+
+| Skill | Root | Purpose |
+| --- | --- | --- |
+| `lens` | `skills/lens` | Create, inspect, fix, and manage Chamber Lens views. |
+| `automation` | `skills/automation` | Create, validate, run, inspect, and schedule Chamber automation scripts. |
+| `ttasks` | `skills/ttasks` | Author TypeScript task graphs and workflows with `@ianphil/ttasks-ts`. |
+
+Each skill entry in `plugin.json` follows this shape:
+
+```jsonc
+{
+  "id": "automation",
+  "displayName": "Chamber Automation",
+  "description": "...",
+  "root": "skills/automation",
+  "requiredFiles": ["SKILL.md", "examples/briefing-with-canvas.ts"],
+  "capabilities": ["chamber-automation", "cron-scripts", "ttasks-runtime"]
+}
+```
+
+The `root` directory must contain `SKILL.md`; Chamber copies the files listed in `requiredFiles` into each mind under `.github/skills/<id>/`. The Copilot SDK then discovers them from the mind's `.github/skills` parent directory.
 
 ## Tools
 
