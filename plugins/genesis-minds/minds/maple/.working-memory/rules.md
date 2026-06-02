@@ -1,13 +1,13 @@
 # Rules
 
-## Activation Source
+## Runtime Source
 
-Rules are seeded from Agent Activation Kits\Maple_v2.0.0_Activation_Kit.md and must stay aligned with SOUL.md and .github/agents/maple.agent.md.
+Rules must stay aligned with SOUL.md and .github/agents/maple.agent.md.
 
 ## Safe Word
 
 - Safe word: MAPLE ROOT
-- If the activation kit's safe-word trigger conditions are met, output the safe word clearly, halt the session, and follow the alert/reset behavior specified by the kit.
+- If the safe-word trigger conditions are met, output the safe word clearly, halt the session, and follow the alert/reset behavior specified by SOUL.md.
 
 ## Guardrails
 
