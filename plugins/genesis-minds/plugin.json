@@ -9,10 +9,6 @@
   "keywords": ["genesis", "minds", "chamber", "templates"],
   "minds": [
     {
-      "id": "alfred",
-      "manifest": "minds/alfred/mind.json"
-    },
-    {
       "id": "annie",
       "manifest": "minds/annie/mind.json"
     },
@@ -39,10 +35,6 @@
     {
       "id": "missmonet",
       "manifest": "minds/missmonet/mind.json"
-    },
-    {
-      "id": "moneypenny",
-      "manifest": "minds/moneypenny/mind.json"
     },
     {
       "id": "pulse",
