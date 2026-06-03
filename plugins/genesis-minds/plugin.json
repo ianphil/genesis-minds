@@ -79,7 +79,7 @@
       "displayName": "Chamber Automation",
       "description": "Create, validate, run, inspect, and schedule Chamber automation scripts.",
       "root": "skills/automation",
-      "requiredFiles": ["SKILL.md", "examples/briefing-with-canvas.ts"],
+      "requiredFiles": ["SKILL.md", "examples/briefing-with-canvas.ts", "examples/teams-channel-reader.ts"],
       "capabilities": ["chamber-automation", "cron-scripts", "ttasks-runtime"]
     },
     {

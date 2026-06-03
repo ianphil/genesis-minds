@@ -1,6 +1,6 @@
 ---
 name: automation
-version: 2.2.0
+version: 2.3.0
 description: "Create, validate, run, inspect, and schedule Chamber automation scripts. Use this skill whenever the user asks for cron jobs, recurring work, scheduled tasks, reminders, daily/weekly/monthly checks, background automations, unattended workflows, or anything that should run later or repeat inside a Chamber mind. This is the Chamber-specific companion to the ttasks skill; use ttasks for generic task graph patterns and this skill for Chamber cron and automation-runtime rules."
 ---
 
@@ -135,7 +135,7 @@ Register only the handlers your graph actually uses, but registering all five is
 
 ## Non-negotiable workflow
 
-When creating or changing a scheduled automation:
+When creating or changing an automation:
 
 1. Write a TypeScript program at `.chamber/automation/<name>.ts`.
 2. Resolve each source the user named before designing the graph: a mind-local path such as `inbox/`, an external CLI/API such as email, or an ambiguous source that needs clarification (see "Source resolution").
@@ -144,7 +144,9 @@ When creating or changing a scheduled automation:
 5. Open the store at `process.env.CHAMBER_TTASKS_DB`, build a `TaskExecutor`, register the handlers, and `await graph.run(executor)` inside a `try { ... } finally { await executor.shutdown(); }`.
 6. Validate it with `automation_validate({ scriptPath })`.
 7. Run it once with `automation_run({ scriptPath })` and inspect `cron_run_detail(runId)` to confirm every task succeeded with real data.
-8. Schedule it with `cron_create({ name, schedule, scriptPath })`.
+8. *(Optional)* Schedule it with `cron_create({ name, schedule, scriptPath })`.
+
+Steps 6–7 are a complete execution path on their own. `automation_run` executes the program through the same Chamber runtime that cron uses — it provides `CHAMBER_GRAPH_ID`, `CHAMBER_TTASKS_DB`, and the bridge handlers. Use this for ad-hoc runs, agent-triggered workflows, or one-shots that don't need a recurring schedule.
 
 Do not call `cron_create` before `automation_validate` and `automation_run` have succeeded. Validation catches TypeScript and import errors before a cron job fails unattended.
 
@@ -353,6 +355,60 @@ httpTask({ url: 'https://example.com/api/status', method: 'GET' }, { title: 'fet
 
 Input: `url: string`, `method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'`, `headers?: Record<string, string>`, `body?: unknown`.
 
+## Custom task types in automations
+
+Automations are not limited to the built-in task types. Any string is a valid `TaskType` — define a handler, register it, and use `Task.custom()` to create tasks. This is the right pattern when the operation calls a JS/TS API or wraps a CLI with typed inputs/outputs rather than a raw shell command.
+
+```ts
+import { type TaskContext } from '@ianphil/ttasks-ts';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const run = promisify(execFile);
+
+// Define the handler as a factory for clean registration
+function teamsReadChannelHandler() {
+  return async (ctx: TaskContext) => {
+    const { teamId, channelId, limit } = JSON.parse(ctx.payload) as {
+      teamId: string;
+      channelId: string;
+      limit?: number;
+    };
+    ctx.raiseIfCancelled();
+    const { stdout } = await run(TEAMS_BIN, [
+      'read-channel', teamId, channelId,
+      '-n', String(limit ?? 10),
+      '--json',
+    ], { timeout: 30_000 });
+    return stdout;
+  };
+}
+
+// Register on the executor alongside built-in types
+executor.register('teams:read-channel', teamsReadChannelHandler());
+
+// Create tasks with it
+const read = Task.custom('teams:read-channel', JSON.stringify({
+  teamId: '...', channelId: '...', limit: 5,
+}), { title: 'read channel' });
+```
+
+Custom types mix freely with built-ins and Chamber bridge types in the same graph. The executor, retry policy, `finally_` semantics, and store persistence all work identically.
+
+### CLI binary paths in the automation runtime
+
+The automation runtime does **not** inherit the user's full `PATH`. CLI binaries installed outside the standard system directories (Go binaries, pnpm globals, Chamber tools) must use absolute paths. Use `where.exe <binary>` or `Get-Command <binary>` during authoring to discover the actual location, then hard-code it in the handler.
+
+Common locations:
+
+| Binary source | Typical path |
+| --- | --- |
+| Chamber tools | `C:\Users\<user>\.chamber\tools\bin\<name>.exe` |
+| Go binaries | `C:\Users\<user>\go\bin\<name>.exe` |
+| pnpm globals | `C:\Users\<user>\AppData\Local\pnpm\bin\<name>` |
+
+See `skills/automation/examples/teams-channel-reader.ts` for a complete working example.
+
 ## Cron tools
 
 Use these tools after editing a program:
@@ -376,6 +432,13 @@ Cron expressions are Croner-compatible. Use ordinary five-field schedules unless
   the reference for the Canvas-via-prompt pattern, `finally_` partial-failure
   handling, and the per-IO-type retry policy. Copy it into `.chamber/automation/`,
   swap the placeholder chat IDs and recipient, then `automation_validate` it.
+
+- `skills/automation/examples/teams-channel-reader.ts` — demonstrates a custom
+  ttasks task type (`teams:read-channel`) that wraps the `teams` CLI via
+  `node:child_process`. Reads a Teams channel, summarizes the messages with
+  `chamberPrompt`, and fires a notification. Reference for the custom task type
+  pattern, absolute CLI binary paths, and the `RetryingExecutor` applied to custom
+  types. Copy it, replace the team/channel IDs, then `automation_validate` it.
 
 ## When to read the ttasks skill
 
